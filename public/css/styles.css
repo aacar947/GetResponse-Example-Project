@@ -1,97 +1,196 @@
-.bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
-}
-
-.b-example-divider {
-  height: 3rem;
-  background-color: rgba(0, 0, 0, 0.1);
-  border: solid rgba(0, 0, 0, 0.15);
-  border-width: 1px 0;
-  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
-    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
-}
-
-.b-example-vr {
-  flex-shrink: 0;
-  width: 1.5rem;
-  height: 100vh;
-}
-
-.bi {
-  vertical-align: -0.125em;
-  fill: currentColor;
-}
-
-.nav-scroller {
-  position: relative;
-  z-index: 2;
-  height: 2.75rem;
-  overflow-y: hidden;
-}
-
-.nav-scroller .nav {
-  display: flex;
-  flex-wrap: nowrap;
-  padding-bottom: 1rem;
-  margin-top: -1px;
-  overflow-x: auto;
-  text-align: center;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-}
-
 html,
 body {
   height: 100%;
 }
 
 body {
-  display: flex;
   align-items: center;
+  text-align: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
+  background: linear-gradient(90deg, #e9ecef, rgb(245, 240, 255));
+}
+/* Form Styles */
+.form-container {
+  background-color: white;
+  padding: 1% 10%;
+  border-radius: 3%;
+  box-shadow: -3px 3px 10px grey;
 }
 
 .form-signin {
-  max-width: 22rem;
+  max-width: 27rem;
   padding: 15px;
 }
+
+.main-form {
+  opacity: 0.3;
+  transition: all 0.7s;
+}
+
 .form-floating {
-  z-index: 0;
+  position: relative;
+  text-align: left;
 }
 
-.form-signin .form-floating:focus-within {
-  z-index: 2;
+/* İnput Fields */
+.form-floating input,
+.form-floating select {
+  padding-top: 1.5rem;
+  height: 3rem;
+  border-radius: 10px;
 }
 
-.form-signin input[type="text"] {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.form-signin input[name="fName"] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   margin-bottom: -1px;
 }
-.form-signin input[type="email"] {
+.form-signin input[name="lName"] {
   border-radius: 0;
   margin-top: -1px;
 }
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
+.form-signin input[name="email"] {
   margin-top: -1px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.form-signin input[name="date"] {
+  height: 3.5rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.form-signin select {
+  height: 3.5rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.optional-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 1;
+}
+
+.form-floating label {
+  position: absolute;
+  padding-left: 5px;
+  width: 100%;
+  height: 100%;
+  top: 30%;
+  left: 0;
+  font-size: 16px;
+  opacity: 1;
+  transition: all 0.15s ease-in-out;
+  cursor: text;
+}
+
+.form-floating:focus-within > label,
+input:not(:placeholder-shown) ~ label,
+.optional-section label {
+  opacity: 0.8;
+  font-size: 14px;
+  height: 35%;
+  top: 0;
+}
+.form-floating input:not(:placeholder-shown):invalid ~ label {
+  color: red;
+}
+
+label i {
+  position: absolute;
+  visibility: hidden;
+  right: 0;
+  padding-top: calc(3.5rem / 2.5);
+  padding-right: 5px;
+}
+.form-floating
+  input:not(:placeholder-shown):invalid
+  ~ label
+  i.fa-circle-exclamation {
+  visibility: visible;
+}
+
+.form-floating input:not(:placeholder-shown):valid ~ label i.fa-circle-check {
+  visibility: visible;
+  color: green;
+}
+
+/* Button Styles */
+.btn-container {
+  opacity: 0;
+  transform: translateY(2.5rem);
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  min-height: 3.5rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+}
 
 .message-box {
+  transform: translateY(-2.5rem);
+  opacity: 0.1;
+  color: red;
   min-height: 4rem;
-  padding-top: 0.5rem;
+  border-radius: 0.4rem;
+  transition: all 0.2s;
+}
+
+/* On load Animations */
+.body-loaded .main-form {
+  transition: all 1s;
+  opacity: 1;
+}
+
+.body-loaded .btn-container {
+  transition-delay: 0.5s;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.body-loaded .message-box {
+  transition-delay: 0.8s;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/*On Submit Anmations*/
+.main-form.onsubmit .message-box {
+  transition-delay: 0s;
+  transform: translateY(-2.5rem);
+  opacity: 0;
+}
+
+.main-form.onsubmit .btn-primary i {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+.btn-primary i {
+  transform: scale(0.1);
+  padding: 0;
+  margin-left: 10px;
+  transform-origin: center;
+  display: none;
+}
+
+.btn-primary span {
+  max-width: 100%;
+  margin-top: 2%;
+}
+
+@keyframes spin {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
 }

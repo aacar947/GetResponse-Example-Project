@@ -3,40 +3,72 @@
 
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sign Up</title>
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/" />
-
+  <!--  Bootstrap Link -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
+  <!-- Font Awesome Link -->
+  <script src=<%=falink%> crossorigin="anonymous"></script>
 
   <!-- Custom styles for this template -->
   <link href="css/styles.css" rel="stylesheet" />
+
+  <!-- Scripts -->
+  <Script src="scripts/app.js" defer></Script>
 </head>
 
-<body class="text-center">
-  <main class="form-signin w-100 m-auto">
-    <form action="/" type="submit" method="post">
-      <img class="mb-4" src="images/logo.png" alt="" width="72" height="57" />
-      <h1 class="h3 mb-lg-3 font-weight-bold">Subscribe To My Newsletter</h1>
-      <div class="form-floating">
-        <input type="text" name="fName" class="form-control" id="floatingInput" placeholder="First name" <%- fnameValue %> />
-      </div>
-      <div class="form-floating">
-        <input type="text" name="lName" class="form-control" id="floatingInput" placeholder="Last name" <%- lnameValue %> />
-      </div>
-      <div class="form-floating">
-        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" <%- emailValue %> />
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">
-        Sign in
-      </button>
-      <div class="message-box">
-        <p style="color: red"><%= message%></p>
-      </div>
-    </form>
-    <p class="mt-5 mb-3 text-muted">&copy; My Newsletter 2022</p>
-  </main>
+<body class="text-center" id="body">
+  <section class="form-signin w-100 m-auto" id="formsignin">
+    <div class="form-container">
+      <form class="main-form" id="mainform" action="/" type="submit" method="post">
+        <img class="mb-4" src="images/logo.png" alt="" width="57" height="57" />
+        <h1 class="h3 mb-lg-3 font-weight-normal">Subscribe To My Newsletter</h1>
+        <div class="form-floating">
+          <input type="text" name="fName" placeholder=" " pattern="^([a-zA-Z\p{L}]{2,}\s)*[a-zA-Z\p{L}]{2,}$" title="This field must be at least 2 characters or more without any special character or number!" class="form-control" id="InputFName" required <%- fnameValue %> />
+          <label for="InputFName">First Name <i class="fa-solid fa-circle-exclamation"></i>
+            <i class="fa-solid fa-circle-check"></i>
+          </label>
+        </div>
+        <div class="form-floating">
+          <input type="text" name="lName" placeholder=" " pattern="[a-zA-Z\p{L}]{2,}" title="This field must be at least 2 characters or more without any special character or number!" class="form-control" id="InputLName" required <%- lnameValue %> />
+          <label for="InputLName">Last Name<i class="fa-solid fa-circle-exclamation"></i>
+            <i class="fa-solid fa-circle-check"></i></label>
+        </div>
+        <div class="form-floating">
+          <input type="email" name="email" class="form-control" id="InputEmail" placeholder=" " required <%- emailValue %> />
+          <label for="InputEmail">Email Address<i class="fa-solid fa-circle-exclamation"></i>
+            <i class="fa-solid fa-circle-check"></i></label>
+        </div>
+        <div class="optional-section">
+          <div class="form-floating">
+            <input type="date" name="date" class="form-control" id="brithday" min="1922-01-01" max="2010-01-01" <%- dateValue %>>
+            <label for="date">Birth Day</label>
+          </div>
+          <div class="form-floating">
+            <select name="country" class="form-control" id="country" placeholder="">
+              <option class="selected" <%- countryValue %>></option>
+            </select>
+            <label for="country">Country</label>
+          </div>
+        </div>
+        <div class="btn-container" id="btncontainer">
+          <button class="w-100 btn btn-lg btn-primary" type="submit">
+            <span>Subscribe</span><i class="fa-solid fa-circle-notch"></i>
+          </button>
+        </div>
+        <div style="overflow: hidden; max-height: 4rem;">
+          <div class="message-box" id="messagebox">
+            <p style="color: red"><%=message%></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
 </body>
+<footer>
+  <p class="mt-5 mb-3">&copy; My Newsletter 2022</p>
+</footer>
 
 </html>
