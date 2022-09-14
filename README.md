@@ -6,6 +6,8 @@ Well, nothing special actually. I am simply new to the web designing and I made 
 ## What does this web page do?
 It basically gets user informations (name, email address, birthday etc.) then sends that informations to the server (server.js) and that server communicates with GetResponse-Api accordingly. 
 And that way you can add the user to your GetResponse account's contacts list using this subsibription web page.
+
+
 ![Screen shot of the page](https://github.com/aacar947/GetResponse-Example-Project/blob/master/images/screenshot.PNG)
 
 
